@@ -3,8 +3,9 @@ package com.findquake;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @SpringBootApplication
 public class Application {
 
@@ -12,4 +13,12 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+}
+
+@RestController
+class HomeController {
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
 }
