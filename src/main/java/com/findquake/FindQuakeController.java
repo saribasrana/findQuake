@@ -19,7 +19,6 @@ public class FindQuakeController {
         this.findQuakeService = findQuakeService;
     }
 
-
     @GetMapping("/earthquakes")
     public List<Earthquake> findQuake(@RequestParam int minmagnitude, @RequestParam int days) {
         FindQuakesRequest findQuakesRequest = FindQuakesRequest.builder().minMagnitude(minmagnitude).countOfDays(days).build();
