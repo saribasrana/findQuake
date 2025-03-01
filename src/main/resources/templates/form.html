@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form</title>
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{/}">Form</a>
+    <a th:href="@{/earthquakes}">Earthquake List</a>
+</div>
+<div class="container">
+    <form id="findEarthquakesForm" method="post" th:object="${findQuakesRequest}" th:action="@{/handleSubmit}">
+    <input type="number" placeholder="Min Magnitude" th:field="*{minMagnitude}">
+        <input type="number" placeholder="Days" th:field="*{countOfDays}">
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
