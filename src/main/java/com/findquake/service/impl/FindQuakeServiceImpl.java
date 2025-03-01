@@ -22,10 +22,8 @@ public class FindQuakeServiceImpl implements FindQuakeService {
     @Override
     public List<Earthquake> findQuakes(FindQuakesRequest findQuakesRequest) {
 
-        // Calculate the start date based on the given number of days
         Date startDate = calculateStartDate(findQuakesRequest.getCountOfDays());
 
-        // Create request parameters
         Map<String, String> params = new HashMap<>();
         params.put("format", "geojson");
         params.put("starttime", formatDate(startDate));
@@ -34,7 +32,6 @@ public class FindQuakeServiceImpl implements FindQuakeService {
         params.put("eventtype", "earthquake");
         params.put("orderby", "time");
 
-        // Make a GET request to the USGS API
         String url = apiUrl + "?format={format}&starttime={starttime}&endtime={endtime}&minmagnitude={minmagnitude}&eventtype={eventtype}&orderby={orderby}";
         FindQuakesResponse response = restTemplate.getForObject(url, FindQuakesResponse.class, params);
 
