@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindQuakesRequest {
-    private double minMagnitude;
-    private int countOfDays;
+    private Double minMagnitude;
+    private Integer countOfDays;
 }
