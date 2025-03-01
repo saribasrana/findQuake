@@ -1,16 +1,21 @@
 package com.findquake.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
+import com.findquake.model.earthquakedata.Feature;
+import com.findquake.model.earthquakedata.Metadata;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class FindQuakesResponse {
-    private List<Earthquake> earthquakes;
+    private String type;
+
+    //API Information
+    private Metadata metadata;
+
+
+    private List<Double> bbox;
+
+    //Quakes
+    private List<Feature> features;
 }

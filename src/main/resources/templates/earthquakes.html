@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Earthquake List</title>
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{/}">Form</a>
+    <a th:href="@{/earthquakes}">Earthquake List</a>
+</div>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Place</th>
+            <th>TimeStamp</th>
+            <th>Magnitude</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="feature : ${features}">
+            <td th:text="${feature.properties.ids}"></td>
+            <td th:text="${feature.properties.place}"></td>
+            <td th:text="${feature.properties.time}"></td>
+            <td th:text="${feature.properties.mag}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

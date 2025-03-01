@@ -1,9 +1,10 @@
 package com.findquake.service.impl;
 
-import com.findquake.model.Earthquake;
-import com.findquake.model.FindQuakesRequest;
 import com.findquake.model.FindQuakesResponse;
+import com.findquake.model.FindQuakesRequest;
+import com.findquake.model.earthquakedata.Feature;
 import com.findquake.service.FindQuakeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,14 +14,18 @@ import java.util.*;
 
 @Service
 public class FindQuakeServiceImpl implements FindQuakeService {
-
     @Value("${api.url}")
     private String apiUrl;
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    @Autowired
+    public FindQuakeServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
-    public List<Earthquake> findQuakes(FindQuakesRequest findQuakesRequest) {
+    public List<Feature> findQuakes(FindQuakesRequest findQuakesRequest) {
 
         // Calculate the start date based on the given number of days
         Date startDate = calculateStartDate(findQuakesRequest.getCountOfDays());
@@ -39,7 +44,7 @@ public class FindQuakeServiceImpl implements FindQuakeService {
         FindQuakesResponse response = restTemplate.getForObject(url, FindQuakesResponse.class, params);
 
         if (response != null) {
-            return response.getEarthquakes();
+            return response.getFeatures();
         } else {
             return Collections.emptyList();
         }
